@@ -25,6 +25,7 @@ RSpec.describe AddressBook do
       expect(book.entries.size).to eq(1)
     end
 
+
     it "adds the correct information to entries" do
       book = AddressBook.new
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
@@ -33,6 +34,30 @@ RSpec.describe AddressBook do
       expect(new_entry.name).to eq('Ada Lovelace')
       expect(new_entry.phone_number).to eq('010.012.1815')
       expect(new_entry.email).to eq('augusta.king@lovelace.com')
+    end
+  end
+  describe "#remove_entry" do
+    it "removes only one entry from the address book" do
+      book = AddressBook.new
+      book.add_entry('Ada Lovelace', '010.012.1815', 'augustda.king@lovelace.com')
+      book.add_entry('Eda Lovelace', '010.013.1825', 'auguscta.king@lovelace.com')
+      book.add_entry('Ida Lovelace', '010.015.1835', 'augusata.king@lovelace.com')
+
+      book.remove_entry('Ada Lovelace', '010.012.1815','augustda.king@lovelace.com')
+
+      expect(book.entries.size).to eq(2)
+    end
+
+
+    it "does not remove an entry if the information doesn't match" do
+      book = AddressBook.new
+      book.add_entry('Ada Lovelace', '010.012.1815', 'augustda.king@lovelace.com')
+      book.add_entry('Eda Lovelace', '010.013.1825', 'auguscta.king@lovelace.com')
+      book.add_entry('Ida Lovelace', '010.015.1835', 'augusata.king@lovelace.com')
+
+      book.remove_entry('Alex R.', '010.012.1815','augustda.king@lovelace.com')
+
+      expect(book.entries.size).to eq(3)
     end
   end
 end
