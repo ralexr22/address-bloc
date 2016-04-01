@@ -2,12 +2,10 @@ require_relative 'entry'
 
 class AddressBook
   attr_reader :entries
-end
 
-
-   def initialize
-     @entries = []
-   end
+  def initialize
+    @entries = []
+  end
 
 
      def add_entry(name, phone_number, email)
