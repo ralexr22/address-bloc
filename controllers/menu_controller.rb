@@ -13,7 +13,8 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-    puts "5 - Exit"
+    puts "5 - View Entry Number n"
+    puts "6 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -36,6 +37,10 @@ class MenuController
        read_csv
        main_menu
      when 5
+       system "clear"
+       view_entry
+       main_menu
+     when 6
        puts "Good-bye!"
        exit(0)
      else
@@ -57,7 +62,7 @@ class MenuController
      address_book.entries.each do |entry|
     system "clear"
     puts entry.to_s
-  # #15
+
     entry_submenu(entry)
   end
 
@@ -68,7 +73,6 @@ class MenuController
  def create_entry
    system "clear"
  puts "New AddressBloc Entry"
- # #12
  print "Name: "
  name = gets.chomp
  print "Phone number: "
@@ -76,7 +80,6 @@ class MenuController
  print "Email: "
  email = gets.chomp
 
- # #13
  address_book.add_entry(name, phone, email)
 
  system "clear"
@@ -87,7 +90,21 @@ class MenuController
  end
 
  def read_csv
-   end
+ end
+
+ def view_entry
+   address_book.entries.each do |entry|
+       system "clear"
+       print "Select Entry Number: "
+       number = gets.chomp
+      #I can't figure out how to call the entries,
+      #I tried different iterations of: address_book.entries plus something else,
+      #but I'm not getting anything.
+
+     end
+     #Since I can't call the entries, I don't know how to determine if an invalid selection was made.
+     #I figure it'd be an `if` statement with an end, since I don't need an 'else' option.
+     end
 
 
    def entry_submenu(entry)
@@ -100,14 +117,12 @@ class MenuController
 
      case selection
      when "n"
-# #19
-when "d"
-when "e"
-# #20
-when "m"
+     when "d"
+     when "e"
+     when "m"
   system "clear"
   main_menu
-else
+  else
   system "clear"
   puts "#{selection} is not a valid input"
   entry_submenu(entry)
