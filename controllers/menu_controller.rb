@@ -93,18 +93,17 @@ class MenuController
  end
 
  def view_entry
-   address_book.entries.each do |entry|
-       system "clear"
-       print "Select Entry Number: "
-       number = gets.chomp
-      #I can't figure out how to call the entries,
-      #I tried different iterations of: address_book.entries plus something else,
-      #but I'm not getting anything.
-
-     end
-     #Since I can't call the entries, I don't know how to determine if an invalid selection was made.
-     #I figure it'd be an `if` statement with an end, since I don't need an 'else' option.
-     end
+   print "Entry number to view: "
+   selection = gets.chomp.to_i
+    if selection < @address_book.entries.count
+      puts @address_book.entries[selection]
+      system "clear"
+      main_menu
+    else
+      puts "#{selection} is not valid"
+      view_entry
+    end
+  end
 
 
    def entry_submenu(entry)
