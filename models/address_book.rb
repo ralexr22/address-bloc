@@ -49,4 +49,13 @@ csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
     end
     return nil
   end
+
+  def iterative_search(name)
+    @entries.each do |entry|
+      if entry.name == name
+        return entry
+      end
+    end
+    return nil
+  end
 end
