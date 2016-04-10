@@ -8,7 +8,6 @@ class AddressBook
     @entries = []
   end
 
-
      def add_entry(name, phone_number, email)
        index = 0
        entries.each do |entry|
@@ -57,5 +56,9 @@ csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
       end
     end
     return nil
+  end
+
+  def detonate_all_entries
+    @entries = []
   end
 end
